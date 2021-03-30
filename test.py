@@ -220,7 +220,7 @@ replay = PriortizedReplay(BUFF_SIZE, 10, beta=0.6)
 
 acmodel = DQNTrainer(input_dim=input_dim,state_dim=action_dim, action_dim=action_dim, replayBuff=replay, lr=LR, use_cuda=use_cuda, gamma=args.gamma,
                         eta=eta, gcn_num_layers=gcn_layers, num_pooling=num_pooling, assign_dim=assign_dim, assign_hidden_dim=assign_hidden_dim)
-acmodel = torch.load('./models/sample_300.pth')
+acmodel = torch.load('./models/sample_400.pth')
 print("loaded modelsl")
 
 #generate graph
@@ -398,11 +398,15 @@ try:
             state_embed, _ = acmodel.get_node_embeddings(nodes_attr=s[0], adj=s[1], nodes=possible_actions)
             l = list(env.possible_actions)
 
-            if rg1.rand() > 0.5:
-                actual_action, q = get_action_curr1(s,s_embs, l)
+            if rg1.rand() > args.epsilon and (replay.size >batch_size or ep == 0):
+                if rg1.rand() > 0.5:
+                    actual_action, q = get_action_curr1(s,s_embs, l)
+                else:
+                    actual_action, q = get_action_curr2(s,s_embs, l)
+                proto_action = actual_action_embed = s_embs[actual_action]
             else:
-                actual_action, q = get_action_curr2(s,s_embs, l)
-            proto_action = actual_action_embed = s_embs[actual_action]
+                actual_action = rg1.choice(list(env.possible_actions), 1)[0]
+                proto_action = actual_action_embed = s_embs[actual_action]
 
             res.append(actual_action)
 
