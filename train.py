@@ -27,7 +27,7 @@ import logging, argparse
 
 g_paths = [
     # 'data/ARISEN_SBMS/graph0.pkl',
-    'data/rand_data/rand_50.pkl'
+    'data/mammal/phb.pkl'
     # 'data/rt/occupy.pkl'
 ]
 
