@@ -216,6 +216,10 @@ times_mean = args.times_mean
 
 noise_param = 1
 
+acmodel = DQNTrainer(input_dim=input_dim,state_dim=action_dim, action_dim=action_dim, replayBuff=replay, lr=LR, use_cuda=use_cuda, gamma=args.gamma,
+                        eta=eta, gcn_num_layers=gcn_layers, num_pooling=num_pooling, assign_dim=assign_dim, assign_hidden_dim=assign_hidden_dim)
+acmodel = torch.load('./models/sample_1000.pth')
+print("loaded model")
 
 #generate graph
 graphs = []
@@ -273,9 +277,6 @@ replay = PriortizedReplay(BUFF_SIZE, 10, beta=0.6)
 logging.info('State Dimensions: '+str(action_dim))
 logging.info('Action Dimensions: '+str(action_dim))
 
-
-acmodel = DQNTrainer(input_dim=input_dim,state_dim=action_dim, action_dim=action_dim, replayBuff=replay, lr=LR, use_cuda=use_cuda, gamma=args.gamma,
-                        eta=eta, gcn_num_layers=gcn_layers, num_pooling=num_pooling, assign_dim=assign_dim, assign_hidden_dim=assign_hidden_dim)
 
 noise = OrnsteinUhlenbeckActionNoise(action_dim, theta=noise_momentum, sigma=noise_magnitude)
 
@@ -357,9 +358,6 @@ def get_action_curr2(s, emb,nodes):
 node_attrs = make_const_attrs(g,input_dim)
 
 n_iter = 0
-
-acmodel.load_models('sample_1000.pth')
-print("loaded model")
 
 try:
     for ep in range(100):
