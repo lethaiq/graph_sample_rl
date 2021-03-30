@@ -256,15 +256,15 @@ for g in graphs:
 
 logging.debug('Extra Seeds:'+ str(e_seeds_list))
 ch = []
-# for gp,g in zip(g_paths,graphs):
-#     rs = []
-#     for _ in range(5):
-#         change = Change(g, budget=budget*2, seeds=[])
-#         obj1, local_obj1, S1 = change()
-#         rs.append(obj1)
-#     ch.append(np.mean(rs))
-#     print("Change for %s is %f" % (gp,ch[-1]))
-# logging.info('Change Results:'+str(obj1)+' '+ str(S1))
+for gp,g in zip(g_paths,graphs):
+    rs = []
+    for _ in range(1):
+        change = Change(g, budget=budget*2, seeds=[])
+        obj1, local_obj1, S1 = change()
+        rs.append(obj1)
+    ch.append(np.mean(rs))
+    print("Change for %s is %f" % (gp,ch[-1]))
+logging.info('Change Results:'+str(obj1)+' '+ str(S1))
 
 if args.obj is not None:
     obj = args.obj
