@@ -26,8 +26,8 @@ import gc
 import logging, argparse
 
 g_paths = [
-    'data/ho/copen.pkl',
-    'data/rt/occupy.pkl'
+    'data/ho/israel.pkl',
+    # 'data/rt/occupy.pkl'
 ]
 
 syn = False
@@ -356,9 +356,15 @@ def get_action_curr2(s, emb,nodes):
 node_attrs = make_const_attrs(g,input_dim)
 
 n_iter = 0
+
+acmodel.load_state_dict("./models/sample_{}.pth".format(1000))
+acmodel.eval()
+print("loaded model")
+
 try:
-    for ep in range(NUM_EP):
-        idx = rg1.randint(len(graphs))
+    for ep in range(100):
+        # idx = rg1.randint(len(graphs))
+        idx = 0
         env = envs[idx]
         g = graphs[idx]
         opt = opts[idx]
@@ -387,7 +393,6 @@ try:
         tot_r = 0
         tot_r1 = 0
         for stps in range(budget):
-            
             
             possible_actions = [node_list.index(x) for x in env.possible_actions]
             
@@ -443,13 +448,6 @@ try:
             
             tot_r1 += r1
 
-            #TODO: TD Compute
-            td = acmodel.td_compute(s,actual_action_embed, r1, s1, s_embs[get_action(s1, s_embs, env.possible_actions)[0]])
-            replay.add(s,actual_action_embed, r1, s1,s_embs[get_action(s1, s_embs, env.possible_actions)[0]] , actual_action, td=np.abs(td))
-
-            if (ep==0 and stps<2) or replay.size>batch_size:
-                acmodel.gradient_update_sarsa(batch_size=batch_size)
-                acmodel.gradient_update_sarsa(batch_size=batch_size)
             torch.cuda.empty_cache()
 
             n_iter += 1
@@ -460,9 +458,7 @@ try:
             if d:
                 break
         
-        print('Critic Loss:', acmodel.loss_critic)
         print('Action:', proto_action)
-        print('Value:', q)
         print('Env Reward:', r1)
         print('Reward:', tot_r)
         print('Chosen:', res,'\n')
@@ -475,18 +471,8 @@ try:
             writer.add_scalar('Influence', env.reward_, ep+1)
             writer.add_scalar('Norm Reward', tot_r1, ep+1)
 
-        
         gc.collect()
-            
-        
-        if ep%save_every == 0:
-            #acmodel.save_models(args.save_model)
-            torch.save(acmodel,'models/'+args.save_model+str(ep)+'.pth')
-        
-        noise_param *= max(0.001,noise_decay_rate)
-        acmodel.eta = max(0.001, acmodel.eta*eta_decay)
-        args.epsilon = max(0.01,args.epsilon*args.eps_decay_rate)
-
+      
 
     writer.close()
 
