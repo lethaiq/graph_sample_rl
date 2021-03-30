@@ -26,9 +26,10 @@ import gc
 import logging, argparse
 
 g_paths = [
-    'data/ARISEN_SBMS/graph1.pkl',
+    # 'data/ARISEN_SBMS/graph1.pkl',
     # 'data/mammal/bhp.pkl'
-    # 'data/rt/occupy.pkl'
+    'data/rt/occupy.pkl',
+    'data/rt/copen.pkl'
 ]
 
 syn = False
