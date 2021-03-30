@@ -43,7 +43,7 @@ class DeepWalk:
         kwargs["hs"] = 1  # deepwalk use Hierarchical Softmax
         kwargs["workers"] = workers
         kwargs["window"] = window_size
-        kwargs["iter"] = iter
+        kwargs["epochs"] = iter
 
         print("Learning embedding vectors...")
         model = Word2Vec(**kwargs)
