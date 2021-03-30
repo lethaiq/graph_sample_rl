@@ -27,6 +27,7 @@ import logging, argparse
 
 g_paths = [
     'data/rt/israel.pkl',
+    # 'data/rt/damascus.pkl',
     # 'data/rt/occupy.pkl'
 ]
 
@@ -357,8 +358,7 @@ node_attrs = make_const_attrs(g,input_dim)
 
 n_iter = 0
 
-acmodel.load_state_dict("./models/sample_{}.pth".format(1000))
-acmodel.eval()
+acmodel.load_models('sample_1000.pth')
 print("loaded model")
 
 try:
