@@ -362,7 +362,7 @@ n_iter = 0
 all_rewards = []
 
 try:
-    for ep in range(100):
+    for ep in range(50):
         # idx = rg1.randint(len(graphs))
         idx = 0
         env = envs[idx]
