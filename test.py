@@ -26,8 +26,8 @@ import gc
 import logging, argparse
 
 g_paths = [
-    # 'data/rt/israel.pkl'
-    'data/rt/copen.pkl',
+    'data/rt/israel.pkl'
+    # 'data/rt/copen.pkl',
     # 'data/rt/occupy.pkl'
 ]
 
