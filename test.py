@@ -359,6 +359,7 @@ def get_action_curr2(s, emb,nodes):
 node_attrs = make_const_attrs(g,input_dim)
 
 n_iter = 0
+all_rewards = []
 
 try:
     for ep in range(100):
@@ -456,6 +457,7 @@ try:
         logging.info('Episode: '+str(ep)+' Reward: '+ str(tot_r))
         logging.debug('Critic Loss: '+ str(acmodel.loss_critic))
         rws.append(tot_r)
+        all_rewards.append(env.reward_)
 
         if write:
             writer.add_scalar('Reward', tot_r, ep+1)
@@ -466,6 +468,8 @@ try:
       
 
     writer.close()
+
+    print("AVG rewards", np.mean(all_rewards))
 
 except KeyboardInterrupt:
     writer.close()
