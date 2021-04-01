@@ -220,7 +220,7 @@ replay = PriortizedReplay(BUFF_SIZE, 10, beta=0.6)
 
 acmodel = DQNTrainer(input_dim=input_dim,state_dim=action_dim, action_dim=action_dim, replayBuff=replay, lr=LR, use_cuda=use_cuda, gamma=args.gamma,
                         eta=eta, gcn_num_layers=gcn_layers, num_pooling=num_pooling, assign_dim=assign_dim, assign_hidden_dim=assign_hidden_dim)
-acmodel = torch.load('./models/retweet1233_best.pth')
+acmodel = torch.load('./models/retweet0.pth')
 print("loaded modelsl")
 
 #generate graph
@@ -405,8 +405,6 @@ try:
                 else:
                     actual_action, q = get_action_curr2(s,s_embs, l)
                 proto_action = actual_action_embed = s_embs[actual_action]
-
-                
             else:
                 actual_action = rg1.choice(list(env.possible_actions), 1)[0]
                 proto_action = actual_action_embed = s_embs[actual_action]
