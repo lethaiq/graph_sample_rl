@@ -108,6 +108,7 @@ class NetworkEnv(object):
             if self.T > self.max_T:
                 self.done = True
             return self.graph, self.reward, self.done, None
+            
         if action in self.active:
             self.reward = self.bad_reward
             self.T += 1

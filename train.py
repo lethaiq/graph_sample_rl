@@ -28,7 +28,7 @@ import logging, argparse
 g_paths = [
     # 'data/ARISEN_SBMS/graph1.pkl',
     # 'data/mammal/bhp.pkl'
-    # 'data/rt/occupy.pkl',
+    'data/rt/occupy.pkl',
     'data/rt/copen.pkl'
 ]
 
@@ -358,6 +358,8 @@ def get_action_curr2(s, emb,nodes):
 node_attrs = make_const_attrs(g,input_dim)
 
 n_iter = 0
+best_env_reward = 0
+env_rewards = []
 try:
     for ep in range(NUM_EP):
         idx = rg1.randint(len(graphs))
@@ -471,6 +473,7 @@ try:
         logging.info('Episode: '+str(ep)+' Reward: '+ str(tot_r))
         logging.debug('Critic Loss: '+ str(acmodel.loss_critic))
         rws.append(tot_r)
+        env_rewards.append(env.reward_)
 
         if write:
             writer.add_scalar('Reward', tot_r, ep+1)
@@ -484,6 +487,11 @@ try:
         if ep%save_every == 0:
             #acmodel.save_models(args.save_model)
             torch.save(acmodel,'models/'+args.save_model+str(ep)+'.pth')
+
+        if np.mean(env_rewards[-10:]) > best_env_reward:
+            best_env_reward = np.mean(env_rewards[-10:])
+            torch.save(acmodel,'models/'+args.save_model+str(ep)+'_best.pth')
+
         
         noise_param *= max(0.001,noise_decay_rate)
         acmodel.eta = max(0.001, acmodel.eta*eta_decay)
