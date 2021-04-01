@@ -220,7 +220,7 @@ replay = PriortizedReplay(BUFF_SIZE, 10, beta=0.6)
 
 acmodel = DQNTrainer(input_dim=input_dim,state_dim=action_dim, action_dim=action_dim, replayBuff=replay, lr=LR, use_cuda=use_cuda, gamma=args.gamma,
                         eta=eta, gcn_num_layers=gcn_layers, num_pooling=num_pooling, assign_dim=assign_dim, assign_hidden_dim=assign_hidden_dim)
-acmodel = torch.load('./models/sample_400.pth')
+acmodel = torch.load('./models/retweet712_best.pth')
 print("loaded modelsl")
 
 #generate graph
@@ -442,8 +442,8 @@ try:
             torch.cuda.empty_cache()
 
             n_iter += 1
-            if write:
-                writer.add_scalar('CriticLoss', acmodel.loss_critic.clone().cpu().data.numpy(), n_iter)
+            # if write:
+            #     writer.add_scalar('CriticLoss', acmodel.loss_critic.clone().cpu().data.numpy(), n_iter)
 
             s = s1
             if d:
