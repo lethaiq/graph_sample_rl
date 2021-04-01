@@ -11,6 +11,7 @@ from ge.models.deepwalk import DeepWalk
 
 import matplotlib.pyplot as plt
 from PIL import Image
+from tqdm import tqdm
 
 import torch
 
@@ -258,7 +259,7 @@ logging.debug('Extra Seeds:'+ str(e_seeds_list))
 ch = []
 for gp,g in zip(g_paths,graphs):
     rs = []
-    for _ in range(5):
+    for _ in tqdm(range(100)):
         change = Change(g, budget=budget*2, seeds=[])
         obj1, local_obj1, S1 = change()
         rs.append(obj1)
