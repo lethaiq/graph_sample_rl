@@ -26,14 +26,14 @@ import gc
 import logging, argparse
 
 g_paths = [
-    'data/rand_data/rand_500.pkl'
+    # 'data/rand_data/rand_500.pkl'
     # 'data/ARISEN_SBMS/graph10.pkl',
     # 'data/mammal/bhp.pkl'
     # 'data/rt/occupy.pkl',
     # 'data/rt/copen.pkl'
     # 'data/mammal/bhp.pkl', #110.849 - 53.144000 (maybe voles4)
     # 'data/mammal/kcs.pkl', #117.7 - 29.686000 (maybe voles3)
-    # 'data/mammal/rob.pkl', #78.79 - 35.062000
+    'data/mammal/rob.pkl', #78.79 - 35.062000
     # 'data/mammal/plj.pkl' #93.77 - 61.360000
 ]
 
