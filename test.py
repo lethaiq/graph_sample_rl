@@ -259,7 +259,7 @@ logging.debug('Extra Seeds:'+ str(e_seeds_list))
 ch = []
 for gp,g in zip(g_paths,graphs):
     rs = []
-    for _ in tqdm(range(1)):
+    for _ in tqdm(range(50)):
         change = Change(g, budget=budget*2, seeds=[])
         obj1, local_obj1, S1 = change()
         rs.append(obj1)
