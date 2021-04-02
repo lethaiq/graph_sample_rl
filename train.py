@@ -259,7 +259,7 @@ ch = []
 for gp,g,seeds in zip(g_paths,graphs,e_seeds_list):
     rs = []
     for _ in range(5):
-        change = Change(g, budget=budget, seeds=seeds)
+        change = Change(g, budget=budget, seeds=[])
         obj1, local_obj1, S1 = change()
         rs.append(obj1)
     ch.append(np.mean(rs))
