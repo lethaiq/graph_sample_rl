@@ -240,14 +240,14 @@ if args.logdir is None:
 else: 
     writer = SummaryWriter(os.path.join('runs', args.logdir))
 
-# Get best baseline
-# opts = []
-# for gp,g in zip(g_paths,graphs):
-#     opt_obj, local_obj, S_opt = influence(g,g)
-#     print(gp)
-#     print('OPT Results:',opt_obj, S_opt)
-#     logging.info('OPT Results:'+str(opt_obj)+' '+ str(S_opt))
-#     opts.append(opt_obj)
+Get best baseline
+opts = []
+for gp,g in zip(g_paths,graphs):
+    opt_obj, local_obj, S_opt = influence(g,g)
+    print(gp)
+    print('OPT Results:',opt_obj, S_opt)
+    logging.info('OPT Results:'+str(opt_obj)+' '+ str(S_opt))
+    opts.append(opt_obj)
 
 #Initialize seeds
 e_seeds_list = []
