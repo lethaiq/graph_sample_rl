@@ -254,6 +254,7 @@ for g in graphs:
 #e_seeds = [31, 171]
 
 logging.debug('Extra Seeds:'+ str(e_seeds_list))
+print("extra seeds", e_seeds_list)
 ch = []
 for gp,g in zip(g_paths,graphs):
     rs = []
