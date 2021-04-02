@@ -259,10 +259,12 @@ logging.debug('Extra Seeds:'+ str(e_seeds_list))
 ch = []
 for gp,g in zip(g_paths,graphs):
     rs = []
-    for _ in tqdm(range(50)):
+    bar = tqdm(range(50))
+    for _ in bar:
         change = Change(g, budget=budget*2, seeds=[])
         obj1, local_obj1, S1 = change()
         rs.append(obj1)
+        bar.set_description("MEAN: {}".format(np.mean(rs)))
     ch.append(np.mean(rs))
     print("Change for %s is %f" % (gp,ch[-1]))
 logging.info('Change Results:'+str(obj1)+' '+ str(S1))
