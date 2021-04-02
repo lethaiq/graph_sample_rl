@@ -238,7 +238,7 @@ if args.logdir is None:
 else: 
     writer = SummaryWriter(os.path.join('runs', args.logdir))
 
-Get best baseline
+# Get best baseline
 opts = []
 for gp,g in zip(g_paths,graphs):
     opt_obj, local_obj, S_opt = influence(g,g)
