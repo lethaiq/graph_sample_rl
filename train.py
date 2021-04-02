@@ -29,7 +29,8 @@ g_paths = [
     # 'data/ARISEN_SBMS/graph1.pkl',
     # 'data/mammal/bhp.pkl'
     # 'data/rt/occupy.pkl',
-    'data/rt/copen.pkl'
+    # 'data/rt/copen.pkl'
+    'data/bhp.pkl'
 ]
 
 syn = False
