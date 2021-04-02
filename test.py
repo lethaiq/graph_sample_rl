@@ -458,7 +458,7 @@ try:
         print('Reward:', tot_r)
         print('Chosen:', res,'\n')
         logging.info('Episode: '+str(ep)+' Reward: '+ str(tot_r))
-        logging.debug('Critic Loss: '+ str(acmodel.loss_critic))
+        # logging.debug('Critic Loss: '+ str(acmodel.loss_critic))
         rws.append(tot_r)
         all_rewards.append(env.reward_)
 
