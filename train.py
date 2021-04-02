@@ -30,7 +30,7 @@ g_paths = [
     # 'data/mammal/bhp.pkl'
     # 'data/rt/occupy.pkl',
     # 'data/rt/copen.pkl'
-    'data/bhp.pkl'
+    'data/mammal/bhp.pkl'
 ]
 
 syn = False
