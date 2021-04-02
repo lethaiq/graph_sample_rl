@@ -36,7 +36,7 @@ g_paths = [
     # 'data/mammal/plj.pkl' #93.77 - 61.360000
 ]
 
-g_paths = ['data/ARISEN_SBMS/graph{}.pkl'.format(i) for i in range(20)]
+g_paths = ['data/ARISEN_SBMS/graph{}.pkl'.format(i) for i in range(1)]
 
 syn = False
 ratio = 5
