@@ -26,15 +26,17 @@ import gc
 import logging, argparse
 
 g_paths = [
-    # 'data/ARISEN_SBMS/graph1.pkl',
+    'data/ARISEN_SBMS/graph0.pkl',
     # 'data/mammal/bhp.pkl'
     # 'data/rt/occupy.pkl',
     # 'data/rt/copen.pkl'
-    'data/mammal/bhp.pkl', #110.849 - 34.16
-    'data/mammal/kcs.pkl', #117.7 - 32.208
-    'data/mammal/rob.pkl', #78.79 - 37.308
-    'data/mammal/plj.pkl' #93.77 - 38.166
+    # 'data/mammal/bhp.pkl', #110.849 - 53.144000 (maybe voles4)
+    # 'data/mammal/kcs.pkl', #117.7 - 29.686000 (maybe voles3)
+    # 'data/mammal/rob.pkl', #78.79 - 35.062000
+    # 'data/mammal/plj.pkl' #93.77 - 61.360000
 ]
+
+g_paths = ['data/ARISEN_SBMS/graph{}.pkl'.format(i) for i in range(20)]
 
 syn = False
 ratio = 5
