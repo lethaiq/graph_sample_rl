@@ -221,8 +221,8 @@ replay = PriortizedReplay(BUFF_SIZE, 10, beta=0.6)
 
 acmodel = DQNTrainer(input_dim=input_dim,state_dim=action_dim, action_dim=action_dim, replayBuff=replay, lr=LR, use_cuda=use_cuda, gamma=args.gamma,
                         eta=eta, gcn_num_layers=gcn_layers, num_pooling=num_pooling, assign_dim=assign_dim, assign_hidden_dim=assign_hidden_dim)
-# acmodel = torch.load('./models/retweet1236_best.pth')
-# print("loaded modelsl")
+acmodel = torch.load('./models/retweet0.pth')
+print("loaded modelsl")
 
 #generate graph
 graphs = []
@@ -458,7 +458,7 @@ try:
         print('Reward:', tot_r)
         print('Chosen:', res,'\n')
         logging.info('Episode: '+str(ep)+' Reward: '+ str(tot_r))
-        # logging.debug('Critic Loss: '+ str(acmodel.loss_critic))
+        logging.debug('Critic Loss: '+ str(acmodel.loss_critic))
         rws.append(tot_r)
         all_rewards.append(env.reward_)
 
