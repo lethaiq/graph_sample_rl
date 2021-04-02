@@ -26,7 +26,7 @@ class Change:
             self.graph.add_edge(u,v)
     
     def sample_graph1(self):
-        self.v1 = random.sample(range(len(self.graph)),int(self.budget/2))
+        self.v1 = random.sample(range(len(self.graph)),self.budget)
         for u in self.v1:
             self.enlarge_graph(u)
         
