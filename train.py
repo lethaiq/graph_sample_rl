@@ -30,10 +30,10 @@ g_paths = [
     # 'data/mammal/bhp.pkl'
     # 'data/rt/occupy.pkl',
     # 'data/rt/copen.pkl'
-    'data/mammal/bhp.pkl',
-    'data/mammal/kcs.pkl',
-    'data/mammal/rob.pkl',
-    'data/mammal/plj.pkl'
+    'data/mammal/bhp.pkl', #110.849 - 34.16
+    'data/mammal/kcs.pkl', #117.7 - 32.208
+    'data/mammal/rob.pkl', #78.79 - 37.308
+    'data/mammal/plj.pkl' #93.77 - 38.166
 ]
 
 syn = False
@@ -258,7 +258,7 @@ ch = []
 for gp,g in zip(g_paths,graphs):
     rs = []
     for _ in range(5):
-        change = Change(g, budget=budget*2, seeds=[])
+        change = Change(g, budget=budget, seeds=e_seeds_list)
         obj1, local_obj1, S1 = change()
         rs.append(obj1)
     ch.append(np.mean(rs))
