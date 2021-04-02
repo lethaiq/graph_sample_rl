@@ -21,6 +21,8 @@ def multi_to_set(f,g):
 def influence(graph, full_graph, samples=SAMPLES):
     for u,v in graph.edges():
         graph[u][v]['p']=PROP_PROBAB
+    for u,v in full_graph.edges():
+        full_graph[u][v]['p']=PROP_PROBAB
     
     def genoptfunction(graph, samples=1000):
         live_graphs = sample_live_icm(graph, samples)
