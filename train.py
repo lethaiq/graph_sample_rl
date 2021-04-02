@@ -68,7 +68,7 @@ def arg_parse():
     parser.add_argument('--write',dest='write', type=int,default=1,
                     help='1 to write stats to tensorboard, 0 to not')
 
-    parser.add_argument('--change-seeds',dest='changeSeeds', type=int,default=0,
+    parser.add_argument('--change-seeds',dest='changeSeeds', type=int,default=1,
                     help='1 to change seeds after each episode, 0 to not')
     parser.add_argument('--add-noise',dest='add_noise', type=int,default=1,
                     help='1 to add noise to action 0 to not')
@@ -258,8 +258,8 @@ print("extra seeds", e_seeds_list)
 ch = []
 for gp,g,seeds in zip(g_paths,graphs,e_seeds_list):
     rs = []
-    for _ in range(10):
-        change = Change(g, budget=budget, seeds=seeds)
+    for _ in range(5):
+        change = Change(g, budget=budget, seeds=[])
         obj1, local_obj1, S1 = change()
         rs.append(obj1)
     ch.append(np.mean(rs))
